@@ -1,271 +1,511 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Building Confident Readers - Olives Consult Workshop</title>
+    <title>Building Confident Readers - Olives Consulting Workshop</title>
+    <link rel="icon" href="Olive school consultant logo_page-0001.jpg" type="image/x-icon">
     <style>
         :root {
-            --primary-color: #808000; /* Olive green matching logo theme */
-            --primary-dark: #555500;
-            --text-color: #2c3e50;
-            --bg-light: #f9fbf7;
+            --primary-olive: #6b8e23;
+            --dark-olive: #3d5214;
+            --light-olive: #f4f7f0;
+            --accent-gold: #c5a059;
+            --text-dark: #2c3e50;
+            --text-muted: #596573;
+            --bg-body: #f8faf6;
             --white: #ffffff;
-            --shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+            --radius-md: 8px;
+            --radius-lg: 12px;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
         }
 
         body {
-            background-color: var(--bg-light);
-            color: var(--text-color);
+            background-color: var(--bg-body);
+            color: var(--text-dark);
             line-height: 1.6;
         }
 
-        header {
-            background-color: var(--white);
-            box-shadow: var(--shadow);
-            padding: 1rem 2rem;
-            text-align: center;
-        }
-
-        .logo-container {
-            max-width: 200px;
-            margin: 0 auto;
-        }
-
-        .logo-container img {
-            width: 100%;
-            height: auto;
-        }
-
-        .tagline {
-            font-size: 0.9rem;
-            color: var(--primary-color);
-            font-weight: 600;
-            margin-top: 0.2rem;
-        }
-
+        /* Container Layout */
         .container {
             max-width: 1100px;
-            margin: 2rem auto;
+            margin: 0 auto;
             padding: 0 1.5rem;
         }
 
-        .hero {
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-            color: var(--white);
-            border-radius: 12px;
-            padding: 2.5rem 2rem;
+        /* Header / Brand Bar */
+        header {
+            background-color: var(--white);
+            border-bottom: 1px solid #e1e8dc;
+            padding: 1.25rem 0;
             text-align: center;
-            margin-bottom: 2rem;
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .logo-container img {
+            max-width: 220px;
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .tagline {
+            font-size: 0.95rem;
+            color: var(--primary-olive);
+            font-weight: 600;
+            margin-top: 0.4rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* Hero Banner */
+        .hero {
+            background: linear-gradient(135deg, var(--dark-olive), var(--primary-olive));
+            color: var(--white);
+            padding: 3.5rem 2rem;
+            border-radius: var(--radius-lg);
+            text-align: center;
+            margin: 2rem 0;
+            box-shadow: var(--shadow-md);
         }
 
         .hero h1 {
             font-size: 2.2rem;
-            margin-bottom: 0.5rem;
+            line-height: 1.3;
+            margin-bottom: 1rem;
+            font-weight: 700;
         }
 
-        .hero p {
-            font-size: 1.1rem;
+        .hero p.overview-lead {
+            font-size: 1.15rem;
+            max-width: 850px;
+            margin: 0 auto;
             opacity: 0.95;
+            font-weight: 300;
         }
 
-        .details-grid {
+        /* Event Quick-Info Bar */
+        .event-details-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.25rem;
             margin-bottom: 2.5rem;
         }
 
-        .card {
+        .detail-card {
             background-color: var(--white);
             padding: 1.5rem;
-            border-radius: 8px;
-            border-left: 4px solid var(--primary-color);
-            box-shadow: var(--shadow);
+            border-radius: var(--radius-md);
+            border-top: 4px solid var(--primary-olive);
+            box-shadow: var(--shadow-sm);
         }
 
-        .card h3 {
-            font-size: 0.9rem;
+        .detail-card h4 {
+            font-size: 0.85rem;
             text-transform: uppercase;
-            color: var(--primary-color);
-            margin-bottom: 0.3rem;
-            letter-spacing: 0.5px;
+            color: var(--primary-olive);
+            letter-spacing: 1px;
+            margin-bottom: 0.4rem;
         }
 
-        .card p {
-            font-size: 1.1rem;
+        .detail-card p {
+            font-size: 1.05rem;
             font-weight: 600;
+            color: var(--text-dark);
         }
 
-        .main-content {
+        /* Main Content Layout */
+        .main-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1.2fr 0.8fr;
             gap: 2rem;
+            margin-bottom: 3rem;
         }
 
-        @media (max-width: 850px) {
-            .main-content {
+        @media (max-width: 900px) {
+            .main-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .form-wrapper {
+                position: static;
             }
         }
 
-        .info-section {
-            background-color: var(--white);
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: var(--shadow);
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .hero {
+                padding: 2rem 1rem;
+            }
+
+            .hero h1 {
+                font-size: clamp(1.55rem, 4.2vw, 2rem);
+            }
+
+            .hero p.overview-lead {
+                font-size: 1rem;
+            }
+
+            .event-details-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .section-card,
+            .form-wrapper,
+            .detail-card {
+                padding: 1.25rem;
+            }
+
+            .iframe-container {
+                height: 680px;
+            }
         }
 
-        .info-section h2 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
+        @media (max-width: 560px) {
+            header {
+                padding: 1rem 0;
+            }
+
+            .logo-container img {
+                max-width: 180px;
+            }
+
+            .tagline {
+                font-size: 0.85rem;
+                padding: 0 0.75rem;
+            }
+
+            .event-details-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                margin: 1rem 0 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 1.45rem;
+            }
+
+            .section-title {
+                font-size: 1.2rem;
+            }
+
+            .iframe-container {
+                height: 620px;
+            }
+
+            footer {
+                padding: 2rem 1rem;
+            }
+        }
+
+        /* Section Cards */
+        .section-card {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            color: var(--dark-olive);
             font-size: 1.4rem;
-            border-bottom: 2px solid var(--bg-light);
+            margin-bottom: 1.2rem;
+            border-bottom: 2px solid var(--light-olive);
             padding-bottom: 0.5rem;
         }
 
-        .info-section ul {
+        .list-check {
             list-style: none;
-            margin-bottom: 1.5rem;
         }
 
-        .info-section li {
+        .list-check li {
             position: relative;
-            padding-left: 1.5rem;
-            margin-bottom: 0.5rem;
+            padding-left: 1.75rem;
+            margin-bottom: 0.8rem;
+            color: var(--text-dark);
         }
 
-        .info-section li::before {
-            content: "✔";
+        .list-check li::before {
+            content: "✓";
             position: absolute;
             left: 0;
-            color: var(--primary-color);
+            top: 0;
+            color: var(--primary-olive);
+            font-weight: bold;
         }
 
-        .payment-box {
-            background-color: #f4f7f0;
-            border: 1px dashed var(--primary-color);
-            padding: 1.2rem;
-            border-radius: 8px;
+        /* Values Grid */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
             margin-top: 1rem;
         }
 
-        .payment-box h3 {
+        .value-item {
+            background: var(--light-olive);
+            padding: 1rem;
+            border-radius: var(--radius-md);
+        }
+
+        .value-item h5 {
+            color: var(--dark-olive);
+            margin-bottom: 0.3rem;
+        }
+
+        .value-item p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Founder Section */
+        .founder-box {
+            background-color: var(--light-olive);
+            border-left: 4px solid var(--primary-olive);
+            padding: 1.5rem;
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin-top: 1rem;
+        }
+
+        .founder-quote {
+            font-style: italic;
             font-size: 1rem;
-            color: var(--primary-dark);
-            margin-bottom: 0.5rem;
+            color: var(--dark-olive);
+            margin-bottom: 0.75rem;
         }
 
-        .form-section {
+        .founder-name {
+            font-weight: bold;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+        }
+
+        /* Registration & Form Area */
+        .form-wrapper {
             background-color: var(--white);
-            border-radius: 10px;
-            box-shadow: var(--shadow);
-            overflow: hidden;
-            min-height: 800px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            padding: 1.5rem;
+            position: sticky;
+            top: 1.5rem;
         }
 
-        iframe {
+        .form-notice {
+            background-color: #fff8eb;
+            border: 1px solid #f2e2be;
+            padding: 0.75rem 1rem;
+            border-radius: var(--radius-md);
+            margin-bottom: 1.25rem;
+            font-size: 0.88rem;
+            color: #8a6216;
+            text-align: center;
+        }
+
+        .iframe-container {
             width: 100%;
-            height: 100%;
-            min-height: 800px;
+            height: 900px;
             border: none;
         }
 
+        .iframe-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: var(--radius-md);
+        }
+
+        /* Footer */
         footer {
+            background-color: var(--dark-olive);
+            color: var(--white);
             text-align: center;
-            padding: 2rem;
-            margin-top: 3rem;
-            font-size: 0.85rem;
-            color: #777;
-            background-color: var(--white);
-            border-top: 1px solid #eee;
+            padding: 2.5rem 1.5rem;
+            margin-top: 4rem;
+        }
+
+        footer p {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        footer .footer-brand {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            opacity: 1;
         }
     </style>
 </head>
 <body>
 
-    <!-- Header Section -->
+    <!-- Header / Brand Section -->
     <header>
         <div class="logo-container">
-            <!-- Replace 'logo.jpg' with the actual path or base64 string of the Olives Consult logo -->
-            <img src="Olive school consultant logo_page-0001.jpg" alt="Olives Consult Logo">
+            <!-- Replace 'logo.jpg' with the actual path to the Olives Consulting logo -->
+            <img src="Olive school consultant logo_page-0001.jpg" alt="Olives Consulting Logo">
         </div>
-        <p class="tagline">Empowering minds. Nurturing growth. Transforming generations.</p>
+        <div class="tagline">Empowering minds. Nurturing growth. Transforming generations.</div>
     </header>
 
     <div class="container">
-        <!-- Hero Section -->
+        
+        <!-- Hero Section: Workshop Title & Overview -->
         <section class="hero">
-            <h1>Building Confident Readers: Beyond Simple Word Patterns</h1>
-            <p>Interactive Workshop & Training Session[cite: 2]</p>
+            <h1>Building Confident Readers: Strengthening Foundational Skills and Moving Beyond Simple Word Patterns</h1>
+            <p class="overview-lead">
+                Every confident reader begins with strong foundations. Discover research-based, practical strategies to help children grow from recognizing simple sounds to reading with fluency and deep understanding.
+            </p>
         </section>
 
-        <!-- Event Key Details Grid -->
-        <section class="details-grid">
-            <div class="card">
-                <h3>Date[cite: 2]</h3>
-                <p>Saturday, Dec 13th[cite: 2]</p>
+        <!-- Date, Time & Format Details -->
+        <section class="event-details-grid">
+            <div class="detail-card">
+                <h4>Date</h4>
+                <p>Saturday, Nov 29th, 2025</p>
             </div>
-            <div class="card">
-                <h3>Time[cite: 2]</h3>
-                <p>12:00 PM (WAT)[cite: 2]</p>
+            <div class="detail-card">
+                <h4>Time</h4>
+                <p>3:00 PM (WAT - Nigeria)<br><span style="font-size:0.85rem; color:var(--text-muted); font-weight: bold;">10:00 AM (EST - Canada)</span></p>
             </div>
-            <div class="card">
-                <h3>Format[cite: 2]</h3>
-                <p>Online (Zoom)[cite: 2]</p>
+            <div class="detail-card">
+                <h4>Format</h4>
+                <p>Live Online (Zoom)</p>
+            </div>
+            <div class="detail-card">
+                <h4>Hosted By</h4>
+                <p>Olives Consulting</p>
             </div>
         </section>
 
-        <!-- Content Area: Details + Embedded Form -->
-        <div class="main-content">
-            <!-- Left Column: Workshop Details & Payment Info -->
-            <div class="info-section">
-                <h2>About the Workshop[cite: 2]</h2>
-                <p>Join us for an impactful session tailored for educators and parents focused on advancing early literacy skills beyond foundational word patterns[cite: 2].</p>
-
-                <h2 style="margin-top: 1.5rem;">Who Should Attend?[cite: 2]</h2>
-                <ul>
-                    <li>Preschool & Elementary Teachers[cite: 2]</li>
-                    <li>Early Childhood Educators (ECE)[cite: 2]</li>
-                    <li>Literacy Coaches[cite: 2]</li>
-                    <li>Parents & Guardians[cite: 2]</li>
-                </ul>
-
-                <h2>Payment & Registration Details[cite: 2]</h2>
-                <p>Payment is required to secure your seat[cite: 2]. Please make payment using the following details before submitting your registration[cite: 2]:</p>
+        <!-- Main Body Layout -->
+        <div class="main-grid">
+            
+            <!-- Left Column: Workshop Details & Company Background -->
+            <div class="content-column">
                 
-                <div class="payment-box">
-                    <h3>Bank Account Details</h3>
-                    <p><strong>Account Name:</strong> Peanums Ventures</p>
-                    <p><strong>Bank:</strong> </p>
-                    <p><strong>Account Number:</strong></p>
-                    <p><strong>Reference:</strong> Your Name + Reading Workshop</p>
+                <!-- What You'll Learn & Key Takeaways -->
+                <div class="section-card">
+                    <h2 class="section-title">What You'll Learn</h2>
+                    <p style="margin-bottom: 1rem; color: var(--text-muted);">
+                        Participants will explore practical, research-based strategies to strengthen children's foundational reading skills. We will specifically address how to support struggling readers who remain stuck at basic decoding stages, such as CVC (e.g., cat, dog) or CCVC (e.g., ship, frog) patterns, helping them transition into fluent, meaningful reading.
+                    </p>
+                    
+                    <h3 style="font-size: 1.1rem; color: var(--dark-olive); margin: 1.5rem 0 0.8rem;">Key Takeaways</h3>
+                    <ul class="list-check">
+                        <li>Understand the core components of foundational reading skills and how they build strong readers.</li>
+                        <li>Identify why children get stuck at basic word patterns and bridge that gap effectively.</li>
+                        <li>Learn classroom- and home-friendly strategies that make decoding, blending, and fluency natural.</li>
+                        <li>Leave with practical tools and renewed confidence to support emerging and struggling readers.</li>
+                    </ul>
                 </div>
-                
-                <p style="margin-top: 1rem; font-size: 0.9rem; color: #666;">
-                    📩 Zoom link and workshop materials will be provided to confirmed participants[cite: 2].
-                </p>
+
+                <!-- Target Audience -->
+                <div class="section-card">
+                    <h2 class="section-title">Who Should Attend?</h2>
+                    <ul class="list-check">
+                        <li>Preschool and Elementary Teachers</li>
+                        <li>Early Childhood Educators (ECEs)</li>
+                        <li>Literacy Coaches</li>
+                        <li>Parents seeking structured reading support for their children</li>
+                    </ul>
+                </div>
+
+                <!-- About the Founder -->
+                <div class="section-card">
+                    <h2 class="section-title">About the Founder</h2>
+                    <p style="margin-bottom: 1rem;">
+                        <strong>Onome Peace Eluwa</strong>, B.Sc., PDE, M.Ed., ECE, is an educator, consultant, and learning leader with over fifteen years of experience across early childhood, elementary, secondary, and post-secondary education. She holds a Master of Education in Educational Leadership and Administration from the University of Windsor.
+                    </p>
+                    <p style="margin-bottom: 1rem;">
+                        Through Olives Consulting, Onome blends classroom wisdom with research-based practice to empower educators and parents with clarity, confidence, and purpose.
+                    </p>
+                    
+                    <div class="founder-box">
+                        <div class="founder-quote">
+                            "At Olives Consulting, I believe education is more than instruction—it's transformation. My mission is to empower teachers, parents, and school leaders with clarity and confidence."
+                        </div>
+                        <div class="founder-name">— Onome Peace Eluwa, Founder</div>
+                    </div>
+                </div>
+
+                <!-- About Olives Consulting & Core Values -->
+                <div class="section-card">
+                    <h2 class="section-title">About Olives Consulting</h2>
+                    <p style="margin-bottom: 0.8rem;">
+                        <strong>Mission:</strong> To bridge gaps in education by clarifying the lines between teaching and impacting knowledge—empowering educators and parents with practical tools and transformative insights.
+                    </p>
+                    <p style="margin-bottom: 1.2rem;">
+                        <strong>Vision:</strong> A world where every child touched by our trained educators thrives academically, emotionally, and socially.
+                    </p>
+
+                    <h3 style="font-size: 1rem; color: var(--dark-olive); margin-bottom: 0.5rem;">Core Values</h3>
+                    <div class="values-grid">
+                        <div class="value-item">
+                            <h5>Empowerment</h5>
+                            <p>Equipping leaders to create lasting change.</p>
+                        </div>
+                        <div class="value-item">
+                            <h5>Growth</h5>
+                            <p>Steady, lifelong learning rooted in wisdom.</p>
+                        </div>
+                        <div class="value-item">
+                            <h5>Clarity</h5>
+                            <p>Simplifying complex educational concepts.</p>
+                        </div>
+                        <div class="value-item">
+                            <h5>Inclusivity</h5>
+                            <p>Valuing every child, educator, and background.</p>
+                        </div>
+                        <div class="value-item">
+                            <h5>Integrity</h5>
+                            <p>Leading with honesty and genuine care.</p>
+                        </div>
+                        <div class="value-item">
+                            <h5>Transformation</h5>
+                            <p>Transforming hearts, minds, and futures.</p>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
-            <!-- Right Column: Embedded Google Form -->
-            <div class="form-section">
-                <!-- Replace 'YOUR_GOOGLE_FORM_EMBED_URL' with the actual iframe embed link generated from Google Forms -->
-                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeDh3UFr5R0hi4_gF7lykuVlh7PbnhJ3xN3vY8KqAh08mxCbg/viewform?embedded=true" width="640" height="848" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+            <!-- Right Column: Registration Area / Embedded Form -->
+            <div class="form-column">
+                <div class="form-wrapper">
+                    <h2 class="section-title" style="border:none; padding:0; margin-bottom:0.5rem;">Register Now</h2>
+                    <div class="form-notice">
+                        ⚠️ Seats are limited to maintain an interactive learning environment.
+                    </div>
+
+                    <!-- Replace 'YOUR_GOOGLE_FORM_EMBED_URL' with your actual Google Form Embed URL -->
+                    <div class="iframe-container">
+                        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeDh3UFr5R0hi4_gF7lykuVlh7PbnhJ3xN3vY8KqAh08mxCbg/viewform?embedded=true" width="640" height="788" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+                </div>
             </div>
+
         </div>
     </div>
 
     <!-- Footer Section -->
     <footer>
-        <p>&copy; 2026 Olives Consult. All rights reserved.[cite: 1]</p>
+        <p class="footer-brand">Olives Consulting</p>
+        <p>Empowering Minds. Nurturing Growth. Transforming Generations.</p>
+        <p style="margin-top: 1rem; font-size: 0.8rem;">&copy; 2026 Olives Consulting. All rights reserved.</p>
     </footer>
 
 </body>
